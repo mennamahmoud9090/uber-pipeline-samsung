@@ -1,0 +1,39 @@
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+*.venv
+
+# Environment & Secrets
+.env
+*.env
+*.pem
+*.key
+
+# Spark, Hadoop & Database Metastore
+metastore_db/
+spark-warehouse/
+derby.log
+*.log
+checkpoint/
+.checkpoint/
+
+# Temporary Local Data Files
+data/
+*.csv
+*.parquet
+*.json
+
+# Airflow Logs & Databases
+airflow/logs/
+airflow/*.pid
+airflow/*.db
+
+# IDEs & System Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
