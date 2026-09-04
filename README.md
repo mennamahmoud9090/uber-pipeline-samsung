@@ -1,31 +1,31 @@
-# Airport Flight Booking & Ride-Sharing Analytics Pipeline
+# Uber-like System: Ride-Sharing Payments & Financial Metrics Analytics Pipeline
 
 ## 🚀 Project Overview
-An end-to-end Data Engineering and Analytics solution designed for an airport flight booking and ride-sharing platform. This project implements the **Medallion Architecture (Bronze, Silver, Gold)** to ingest, process, store, and analyze large-scale datasets including weather conditions, ride transactions, and payments.
+An end-to-end Data Engineering and Analytics solution designed for a ride-sharing (Uber-like) platform. This project implements the **Medallion Architecture (Bronze, Silver, Gold)** to ingest ride-sharing transactions and weather data, process and transform financial metrics using **Apache PySpark**, store them in **HDFS**, and load them into **Apache Hive** following a **Star Schema** to calculate profitability indicators like Net Revenue and Surge Multipliers.
 
 ---
 
 ## 🏗️ Architecture & Tech Stack
-* **Data Ingestion:** Apache NiFi (Batch & API integration)
+* **Data Ingestion:** Apache NiFi (Batch & API integration for CSV, Parquet, JSON)
 * **Storage Layer (Data Lake):** HDFS (Hadoop Distributed File System)
-* **Processing & ETL:** Apache PySpark & Spark SQL
+* **Processing & ETL:** Apache PySpark & Spark SQL (Data Type Casting, Joins, Net Revenue Calculation)
 * **Data Warehousing:** Apache Hive (External Tables, Star Schema)
-* **Visualization & Reporting:** Power BI / Analytics Dashboards
+* **Visualization & Reporting:** Power BI / Financial P&L Analytics Dashboards
 
 ---
 
 ## 📂 Medallion Architecture & Repository Structure
-The project is structured following the core data engineering layers:
-* **`bronze/`**: Raw data ingestion logic, NiFi flow XML exports, and initial staging files.
-* **`silver/`**: PySpark ETL scripts for data cleaning, type casting, deduplication, and joining ride data with payments to calculate metrics like `net_revenue`.
-* **`gold/`**: Business-ready aggregated data, Hive SQL queries, and Data Modeling (Star Schema definitions).
+The project is structured following core data engineering layers:
+* **`bronze/`**: Raw data ingestion logic, NiFi flow XML exports, and staging files (Payments, Rides Geo, Weather).
+* **`silver/`**: PySpark ETL scripts for data cleaning, type casting, deduplication, and joining ride-sharing data with payments (`Staging_Payments_Joined`) to calculate metrics like `net_revenue` and handle surge logic.
+* **`gold/`**: Business-ready aggregated data, Hive SQL queries, and Data Modeling (Star Schema definitions) for KPIs like Average Fare per Trip.
 
 ---
 
 ## 🔄 Pipeline Workflow
-1. **Ingestion (Bronze):** NiFi extracts local datasets and queries the Open-Meteo Weather API, securely routing them to HDFS.
-2. **Transformation (Silver):** PySpark handles data standardization, cleans missing values, and implements surge pricing and net revenue logic (`fare_amount - commission`).
-3. **Warehousing & Analytics (Gold):** Processed Parquet files are loaded into Hive tables, powering final KPI aggregations (e.g., Average Fare per Trip, P&L analytics).
+1. **Ingestion (Bronze):** NiFi extracts local datasets (CSV, Parquet, JSON) and queries the Weather API, routing raw payloads securely to HDFS.
+2. **Transformation (Silver):** PySpark handles data type standardization, cleans missing values, and processes financial calculations (`net_revenue = fare_amount - commission`) alongside surge multiplier analysis.
+3. **Warehousing & Analytics (Gold):** Processed Parquet files are loaded into Hive tables, powering final KPI aggregations (e.g., Avg. Fare per Trip and profitability analytics).
 
 ---
 
@@ -40,7 +40,7 @@ The project is structured following the core data engineering layers:
 ---
 
 ## 👥 Project Team
-* **Mennatullah**(...)
-* **Jana** (...)
-* **Basel** (...)
-* **Bassant** (...)
+* **Mennatullah** (Data Ingestion from Sources)
+* **Jana** (Data Transformation )
+* **Basel** ( Data Warehousing)
+* **Bassant** (Data Analysis )
